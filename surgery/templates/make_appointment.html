@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 style="margin-bottom:50px">Make Appointment</h1>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.type.label }}<br>
+            {{ form.type }}<br>
+            {% for error in form.type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.staff_name.label }}<br>
+            {{ form.staff_name(size=32) }}<br>
+            {% for error in form.staff_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.patient_name.label }}<br>
+            {{ form.patient_name(size=32) }}<br>
+            {% for error in form.patient_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.patient_address.label }}<br>
+            {{ form.patient_address(size=64) }}<br>
+            {% for error in form.patient_address.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.patient_phone.label }}<br>
+            {{ form.patient_phone(size=15) }}<br>
+            {% for error in form.patient_phone.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.date.label }}<br>
+            {{ form.date }}<br>
+            {% for error in form.date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.time.label }}<br>
+            {{ form.time }}<br>
+            {% for error in form.time.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>Next available date is {{ next_available_date }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <a href="{{ url_for('reception') }}">Back to Reception</a>
+
+{% endblock %}

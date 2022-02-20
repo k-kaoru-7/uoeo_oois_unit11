@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Manage Healthcare Professional</h1>
+<h2>Healthcare Professional List</h2>
+<a href="{{ url_for('register_healthcare_pro') }}">Register Healthcare Professional</a>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>id</th>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Employee Number</th>
+        <th>Registered Date</th>
+        <th>Cancel Appointment</th>
+    </tr>
+    {% for healthcare_pro in healthcare_pros %}
+    <tr>
+        <td>{{ healthcare_pro.id }}</td>
+        <td>{{ healthcare_pro.employee_type}}</td>
+        <td>{{ healthcare_pro.name }}</td>
+        <td>{{ healthcare_pro.employee_num }}</td>
+        <td>{{ healthcare_pro.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>
+            <form action="/delete_healthcare_pro/{{ healthcare_pro.id }}" style="display: inline" method="post">
+                <input class="btn btn-danger" type="submit" value="Delete" onclick='return confirm("Are you sure to delete this healthcare professional?")';>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>Hi, {{ current_user.username }}!</p>
+    <h1>Main Menu</h1>
+    <h2><a href="{{ url_for('reception') }}">Reception</a></h2>
+    <p>Make appointments</p>
+    <h2><a href="{{ url_for('prescription') }}">Prescription</a></h2>
+    <p>Issue prescription</p>
+    <h2><a href="{{ url_for('patient') }}">Patient</a></h2>
+    <p>Manage patient information</p>
+    <h2><a href="{{ url_for('healthcare_pro') }}">Healthcare Professional</a></h2>
+    <p>Manage healthcare professional information</p>
+{% endblock %}

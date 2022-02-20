@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Prescription</h1>
+<h2>Issued Prescription List</h2>
+<a href="{{ url_for('issue_prescription') }}">Issue Prescription</a>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>id</th>
+        <th>Type</th>
+        <th>Doctor Name</th>
+        <th>Patient Name</th>
+        <th>Quantity</th>
+        <th>Dosage</th>
+        <th>Issued Date</th>
+        <th>Cancel Prescription</th>
+    </tr>
+    {% for prescription in prescriptions %}
+    <tr>
+        <td>{{ prescription.id }}</td>
+        <td>{{ prescription.type}}</td>
+        <td>{{ prescription.doctor.name }}</td>
+        <td>{{ prescription.patient.name }}</td>
+        <td>{{ prescription.quantity }}</td>
+        <td>{{ prescription.dosage }}</td>
+        <td>{{ prescription.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>
+            <form action="/cancel_prescription/{{ prescription.id }}" style="display: inline" method="post">
+                <input class="btn btn-danger" type="submit" value="Cancel" onclick='return confirm("Are you sure to cancel this prescription?")';>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% endblock %}
